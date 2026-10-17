@@ -81,8 +81,11 @@ python3 skills/legal-docs/scripts/check_sources.py            # all sources
 python3 skills/legal-docs/scripts/check_sources.py --file de.md
 ```
 
-`OK` means the URL works and still contains the expected text. `WARN` means the site blocks
-automated clients (verify by hand). `FAIL` means it is broken. A scheduled GitHub Action runs
+`OK` means the URL works and still contains the expected text. `WARN` means the site blocked
+the check, rate-limited it, or couldn't be reached from the network the check ran on (some
+government sites don't answer cloud or CI IP ranges), so verify it by hand. `FAIL` means the
+source is broken: a dead link or the expected text is gone. Only `FAIL` makes the check exit with
+an error. A scheduled GitHub Action runs
 the check monthly. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to fix or add sources.
 
 ## Disclaimer

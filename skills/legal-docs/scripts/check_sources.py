@@ -76,6 +76,7 @@ class Result:
     final_url: str = ""
     message: str = ""
     notes: list[str] = field(default_factory=list)
+    unreachable: bool = False
 
 
 def parse_entries(paths: list[Path]) -> list[Entry]:
@@ -162,14 +163,17 @@ def _raw_fetch(url: str, timeout: int) -> tuple[int, str, str]:
         return response.status, response.geturl(), decode(body, response.headers.get("Content-Encoding"))
 
 
-def fetch(url: str, timeout: int, delay: float = 0.0, retries: int = 2) -> tuple[int, str, str]:
+def fetch(url: str, timeout: float, delay: float = 0.0, retries: int = 2) -> tuple[int, str, str]:
     """Fetch politely: one request at a time per host, `delay` seconds apart,
-    backing off and retrying when the host serves a challenge/rate limit."""
+    backing off and retrying when the host serves a challenge/rate limit,
+    and retrying once after a network error (timeout, reset, DNS)."""
     host = urllib.parse.urlsplit(url).hostname or ""
     with _registry_lock:
         lock = _host_locks.setdefault(host, threading.Lock())
     with lock:
-        for attempt in range(retries + 1):
+        network_retry_used = False
+        attempt = 0
+        while True:
             wait = _host_last.get(host, 0.0) + delay - time.monotonic()
             if wait > 0:
                 time.sleep(wait)
@@ -180,16 +184,23 @@ def fetch(url: str, timeout: int, delay: float = 0.0, retries: int = 2) -> tuple
                 if err.code != 429 and not _is_block_page(err):
                     raise
                 challenged = True
+            except OSError:  # URLError, timeouts, resets, TLS errors
+                if network_retry_used:
+                    raise
+                network_retry_used = True
+                time.sleep(5)
+                continue
             finally:
                 _host_last[host] = time.monotonic()
             if not challenged:
                 return status, final_url, body
-            if attempt < retries:
-                time.sleep(30 * (attempt + 1))
-        raise Challenge("site served a bot challenge / rate limit")
+            if attempt >= retries:
+                raise Challenge("site served a bot challenge / rate limit")
+            attempt += 1
+            time.sleep(30 * attempt)
 
 
-def check(entry: Entry, timeout: int, delay: float) -> Result:
+def check(entry: Entry, timeout: float, delay: float) -> Result:
     result = Result(entry.id, entry.file, entry.line, entry.url, "FAIL")
     if not entry.url:
         result.message = "entry has no URL"
@@ -206,13 +217,17 @@ def check(entry: Entry, timeout: int, delay: float) -> Result:
         if entry.bot_protected and err.code in (401, 403, 404, 429, 503):
             result.status = "WARN"
             result.message = f"HTTP {err.code} (site is marked bot-protected; verify with a browser or web-fetch tool)"
+        elif err.code >= 500:  # server trouble says nothing about whether the page still exists
+            result.status = "WARN"
+            result.unreachable = True
+            result.message = f"HTTP {err.code} server error; not verified, re-run later"
         else:
             result.message = f"HTTP {err.code}"
         return result
-    except Exception as err:  # network errors, TLS, timeouts
-        result.message = f"{type(err).__name__}: {err}"
-        if entry.bot_protected:
-            result.status = "WARN"
+    except Exception as err:  # timeouts, resets, DNS, TLS: blocked from this network, not proof the source is gone
+        result.status = "WARN"
+        result.unreachable = True
+        result.message = f"unreachable from this network ({type(err).__name__}: {err}); not verified"
         return result
 
     if entry.expect and normalise(entry.expect) not in normalise(body):
@@ -235,7 +250,7 @@ def check(entry: Entry, timeout: int, delay: float) -> Result:
                 return result
             if not entry.bot_protected:
                 warn = True
-            result.notes.append(f"Also-URL {extra} returned HTTP {err.code}")
+            result.notes.append(f"Also-URL {extra} returned HTTP {err.code}; not verified")
         except Exception as err:  # refused connections, TLS problems: blocked, not necessarily gone
             warn = True
             result.notes.append(f"Also-URL {extra} unreachable ({type(err).__name__}: {err})")
@@ -252,7 +267,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--file", action="append", help="only check this sources file (e.g. de.md)")
     parser.add_argument("--id", action="append", help="only check this source ID (repeatable)")
-    parser.add_argument("--timeout", type=int, default=30)
+    parser.add_argument("--timeout", type=float, default=30, help="seconds per request")
     parser.add_argument("--workers", type=int, default=16, help="hosts checked in parallel")
     parser.add_argument("--delay", type=float, default=3.0, help="seconds between requests to the same host")
     parser.add_argument("--json", action="store_true", help="print JSON instead of a table")
@@ -296,6 +311,13 @@ def main() -> int:
             print(f"{res.status:4}  {res.id:28} {res.file}:{res.line}  {detail}")
         counts = {s: sum(r.status == s for r in results) for s in ("OK", "WARN", "FAIL")}
         print(f"\n{len(results)} sources: {counts['OK']} OK, {counts['WARN']} WARN, {counts['FAIL']} FAIL")
+        # A whole host failing at network level is a block or outage, not many dead links.
+        for host, group in by_host.items():
+            if len(group) > 1 and all(checked[id(e)].unreachable for e in group):
+                print(f"note: host {host} was unreachable for all {len(group)} entries "
+                      "(blocked from this network or down); check it from another network")
+        print("WARN = blocked, rate-limited or unreachable from this network: verify by hand. "
+              "FAIL = the source is broken (dead link or expected text missing).")
     return 1 if any(r.status == "FAIL" for r in results) else 0
 
 

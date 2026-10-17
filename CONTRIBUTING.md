@@ -45,8 +45,10 @@ Rules:
 python3 skills/legal-docs/scripts/check_sources.py --file <changed-file>.md
 ```
 
-All entries you touched must be `OK`, or `WARN` with `Bot-protected: yes` and a note explaining
-how you verified them (e.g. "checked in a browser on YYYY-MM-DD").
+All entries you touched must be `OK`, or `WARN` with a note explaining how you verified them
+(e.g. "checked in a browser on YYYY-MM-DD"). `WARN` covers sites that block bots and sites that
+are unreachable from the network the check ran on. CI runners can be blocked by sites that work
+fine from home, and the other way round. `FAIL` (dead link, expected text missing) must be fixed.
 
 ## Workflow instructions
 

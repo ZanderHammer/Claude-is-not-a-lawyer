@@ -147,11 +147,12 @@ read from the text.
 - Last verified: 2026-10-17
 
 ### US-NH-PRIVACY — New Hampshire, RSA ch. 507-H (Expectation of Privacy)
-- URL: https://www.gencourt.state.nh.us/rsa/html/LII/507-H/507-H-mrg.htm
+- URL: https://gc.nh.gov/rsa/html/LII/507-H/507-H-mrg.htm
 - Tier: T1
+- Expect: 507-H
 - Bot-protected: yes
 - Used for: privacy-policy
-- Notes: The server closed automated connections at verification. Open in a browser if needed.
+- Notes: The old gencourt.state.nh.us address redirects here. Reachable from GitHub's runners at verification, but some networks get their connection closed. Open in a browser if needed.
 - Last verified: 2026-10-17
 
 ### US-NJ-NJDPA — New Jersey Data Privacy Act, P.L. 2023, c. 266 (N.J.S.A. 56:8-166.4 ff.)
