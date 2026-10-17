@@ -1,0 +1,35 @@
+name: Sync labels
+
+# Creates or updates the repository labels defined in .github/labels.json.
+# Labels not in the file are left alone (GitHub's defaults stay).
+on:
+  push:
+    paths:
+      - ".github/labels.json"
+      - ".github/workflows/sync-labels.yml"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Create or update labels
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'EOF'
+          import json, subprocess
+          for label in json.load(open(".github/labels.json")):
+              subprocess.run(
+                  ["gh", "label", "create", label["name"], "--force",
+                   "--color", label["color"], "--description", label["description"]],
+                  check=True,
+              )
+              print(f"synced {label['name']}")
+          EOF

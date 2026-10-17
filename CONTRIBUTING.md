@@ -55,3 +55,10 @@ fine from home, and the other way round. `FAIL` (dead link, expected text missin
 Changes to `SKILL.md` and `references/workflow/` change how agents behave. Keep the core
 rules intact: disclaimer, sources first, explicit fallback reporting, records, defense reports.
 Keep `SKILL.md` short; put detail in `references/`.
+
+## Labels
+
+Repository labels are defined in `.github/labels.json` and synced by the "Sync labels" workflow
+whenever that file changes. Use `sources` / `broken-source` for the source library, a
+`jurisdiction:*` and a `doc:*` label where they apply, and `needs-legal-review` for anything that
+changes what the skill says about the law.

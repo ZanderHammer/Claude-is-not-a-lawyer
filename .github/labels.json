@@ -1,0 +1,23 @@
+[
+  {"name": "sources", "color": "1d76db", "description": "Bundled legal source library: add, fix or update sources"},
+  {"name": "broken-source", "color": "d73a4a", "description": "A bundled source URL is dead or its content changed"},
+  {"name": "needs-legal-review", "color": "b60205", "description": "Changes legal substance; should be checked by a lawyer"},
+  {"name": "workflow", "color": "5319e7", "description": "Skill instructions: SKILL.md, interview, records, drafting, defense"},
+  {"name": "scripts", "color": "0e8a16", "description": "Helper scripts: check_sources, eurlex, fedlex_latest"},
+  {"name": "ci", "color": "ededed", "description": "GitHub Actions and automation"},
+
+  {"name": "jurisdiction:EU", "color": "003399", "description": "European Union law"},
+  {"name": "jurisdiction:DE", "color": "fbca04", "description": "Germany"},
+  {"name": "jurisdiction:AT", "color": "e11d21", "description": "Austria"},
+  {"name": "jurisdiction:CH", "color": "ff0000", "description": "Switzerland"},
+  {"name": "jurisdiction:EU-member-states", "color": "6f8fcf", "description": "Other EU member states and the EEA"},
+  {"name": "jurisdiction:UK", "color": "012169", "description": "United Kingdom"},
+  {"name": "jurisdiction:US", "color": "3c3b6e", "description": "United States (federal and states)"},
+
+  {"name": "doc:privacy-policy", "color": "c5def5", "description": "Privacy policy checklist and guidance"},
+  {"name": "doc:terms", "color": "c5def5", "description": "Terms of service / AGB checklist and guidance"},
+  {"name": "doc:imprint", "color": "c5def5", "description": "Imprint / Impressum checklist and guidance"},
+  {"name": "doc:cookie-policy", "color": "c5def5", "description": "Cookie policy and consent texts"},
+  {"name": "doc:withdrawal-notice", "color": "c5def5", "description": "Withdrawal notice / Widerrufsbelehrung"},
+  {"name": "doc:dpa", "color": "c5def5", "description": "Data processing agreement / AVV"}
+]
