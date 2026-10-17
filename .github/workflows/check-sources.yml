@@ -26,7 +26,7 @@ jobs:
         run: python3 skills/legal-docs/scripts/check_sources.py | tee check-report.txt
       - name: Upload report
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: source-check-report
           path: check-report.txt
