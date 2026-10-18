@@ -1,6 +1,6 @@
 # Other EU member states (and EEA): sources
 
-Germany and Austria have their own files (`de.md`, `at.md`). For every other member state this
+Germany, Austria and Spain have their own files (`de.md`, `at.md`, `es.md`; the Spanish IDs `MS-ES` and `MS-ES-DPA` live in `es.md`). For every other member state this
 file gives the **data protection authority** (needed for the complaint clause and for national
 guidance) and the **official legislation portal** (for national implementations of the EU
 directives in `eu.md`: ePrivacy/cookies, consumer rights, e-commerce information duties).
@@ -40,14 +40,6 @@ DPAs are listed in `EU-EDPB-MEMBERS`.
 - Notes: The CNIL is very active on cookies. Légifrance blocks automated clients; ask the user to open the article if needed.
 - Last verified: 2026-10-17
 
-### MS-ES — Spain
-- URL: https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758
-- Tier: T1
-- Expect: Artículo 10
-- Also: https://www.aepd.es/guias/guia-cookies.pdf https://www.aepd.es/
-- Key provisions: Ley 34/2002 (LSSI): art. 10 (general information duty, the Spanish imprint/"aviso legal"), art. 21 (commercial e-mails), art. 22.2 (cookies, consent); AEPD cookie guide
-- Used for: imprint, cookie-policy, privacy-policy
-- Last verified: 2026-10-17
 
 ### MS-IT — Italy
 - URL: https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9677876
@@ -246,11 +238,6 @@ least one of the two refused automated access at verification.
 - Also: https://pisrs.si/
 - Last verified: 2026-10-17
 
-### MS-ES-DPA — Spain (DPA)
-- URL: https://www.aepd.es/
-- Tier: T2
-- Expect: Agencia Española de Protección de Datos
-- Last verified: 2026-10-17
 
 ### MS-SE — Sweden
 - URL: https://www.imy.se/

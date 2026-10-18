@@ -40,7 +40,8 @@ Widerrufsbelehrung, data processing agreement / AVV) **less badly**.
 | EU (GDPR, ePrivacy, consumer rights incl. the 2026 withdrawal function, DSA, EAA, AI Act, …) | full |
 | Germany, Austria | full (imprint, AGB, withdrawal, cookies, data protection) |
 | Switzerland | full for data protection and e-commerce duties |
-| Other EU member states | DPA + legislation portal for all; national specifics for FR, ES, IT, NL, IE |
+| Spain | full (imprint, cookies, data protection, consumer contracts, accessibility) |
+| Other EU member states | DPA + legislation portal for all; national specifics for FR, IT, NL, IE |
 | United Kingdom | full |
 | United States | federal (FTC Act, COPPA, CAN-SPAM, ROSCA, DMCA, E-SIGN) + California and the other comprehensive state privacy laws |
 
