@@ -2,7 +2,7 @@ name: Check legal sources
 
 on:
   schedule:
-    - cron: "17 6 * * 1" # weekly, Mondays
+    - cron: "17 6 1 * *" # monthly, 1st of the month
   workflow_dispatch:
 
 permissions:

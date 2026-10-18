@@ -86,7 +86,7 @@ the check, rate-limited it, or couldn't be reached from the network the check ra
 government sites don't answer cloud or CI IP ranges), so verify it by hand. `FAIL` means the
 source is broken: a dead link or the expected text is gone. Only `FAIL` makes the check exit with
 an error. A scheduled GitHub Action runs
-the check weekly. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to fix or add sources.
+the check monthly. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to fix or add sources.
 
 ## Disclaimer
 
