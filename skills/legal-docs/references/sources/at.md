@@ -101,5 +101,6 @@ MedienG § 25 (Offenlegung). A webshop needs all three.
 - Bot-protected: yes
 - Key provisions: Supervisory authority (contact details for the complaint clause); guidance and decisions
 - Used for: privacy-policy
-- Notes: The site refused automated connections at last verification. Open in a browser or use `EU-EDPB-MEMBERS` for the contact details.
-- Last verified: 2026-10-17
+- Notes: The site closes plain HTTP connections but loads in a headless browser. Use `EU-EDPB-MEMBERS` for the contact details.
+- Verification: browser: home page read in a headless browser
+- Last verified: 2026-10-18

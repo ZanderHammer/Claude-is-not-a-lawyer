@@ -27,8 +27,9 @@ listed alternative (enrolled bill text, Attorney General page) and say which one
 - Bot-protected: yes
 - Key provisions: § 1798.100 (notice at collection); § 1798.105–.125 (rights to delete, correct, know, opt out of sale/sharing, limit use of sensitive PI, non-discrimination); § 1798.130 (privacy policy content and update every 12 months; methods for requests); § 1798.135 ("Do Not Sell or Share My Personal Information" / "Limit the Use of My Sensitive Personal Information" links, opt-out preference signals); § 1798.140 (definitions incl. "business" thresholds, "sale", "sharing", "sensitive personal information")
 - Used for: privacy-policy (California section / CCPA notice), cookie-policy (sharing for cross-context behavioural advertising)
-- Notes: The URL is the statute as published by the California Privacy Protection Agency (effective 1 Jan 2026). leginfo (the legislature's site) blocks automated clients. Monetary thresholds are CPI-adjusted (see `US-CA-CPPA-REGS`).
-- Last verified: 2026-10-17
+- Notes: The URL is the statute as published by the California Privacy Protection Agency (effective 1 Jan 2026), which was read. leginfo (the legislature's site) is behind a Cloudflare bot challenge. Monetary thresholds are CPI-adjusted (see `US-CA-CPPA-REGS`).
+- Verification: automated: CPPA PDF statute read; leginfo blocked
+- Last verified: 2026-10-18
 
 ### US-CA-CPPA-REGS — CCPA Regulations, Cal. Code Regs. tit. 11 § 7000 ff. (CPPA)
 - URL: https://cppa.ca.gov/regulations/
@@ -53,8 +54,10 @@ listed alternative (enrolled bill text, Attorney General page) and say which one
 - Bot-protected: yes
 - Key provisions: § 22575(b) (privacy policy must list categories of PII collected and third parties shared with, how users can review/request changes, how users are notified of changes, effective date, **how the site responds to "Do Not Track" signals**, whether third parties track across sites)
 - Used for: privacy-policy (any commercial website or online service collecting PII from California residents, **no size threshold**)
-- Notes: leginfo blocks automated clients. If unreachable, tell the user and ask them to open the link, or follow the fallback procedure.
-- Last verified: 2026-10-17
+- Notes: leginfo.legislature.ca.gov is behind a Cloudflare bot challenge that no tool here passed (plain fetch, web-fetch tool, headless browser), so the statute was **not read from the official site**. The California Attorney General page (`Also`) confirms that CalOPPA, Bus. & Prof. Code §§ 22575–22579, requires commercial sites collecting PII from Californians to conspicuously post a privacy policy. Details of § 22575(b), including the Do-Not-Track disclosure added by AB 370 (2013), were confirmed only on a third-party mirror (california.public.law). Ask the user to open the link, or follow the fallback procedure and label the clause.
+- Verification: official AG page read; statute text from a non-official mirror only (leginfo blocked)
+- Also: https://oag.ca.gov/privacy/facts/online-privacy/privacy-policy
+- Last verified: 2026-10-18
 
 ### US-CA-ARL — California Automatic Renewal Law, Bus. & Prof. Code §§ 17600–17606
 - URL: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&division=7.&title=&part=3.&chapter=1.&article=9.
@@ -62,8 +65,9 @@ listed alternative (enrolled bill text, Attorney General page) and say which one
 - Bot-protected: yes
 - Key provisions: Clear and conspicuous offer terms before the subscription; affirmative consent; acknowledgement with cancellation info; online cancellation ("click to cancel"); notices before price changes and before free trials convert
 - Used for: terms (subscriptions with California consumers)
-- Notes: Amended in recent years (incl. online cancellation and consent rules). Read the current text. Many other states have similar laws (check the tracker / state AG pages).
-- Last verified: 2026-10-17
+- Notes: leginfo is blocked as for `US-CA-CALOPPA`, so the statute was **not read**. Secondary sources report that AB 390 (effective 1 July 2022) amended § 17602: offer terms must be clear and conspicuous before purchase, consumers who sign up online must be able to cancel online, and reminder notices are required before renewal and before free trials convert. Read the current text before drafting subscription clauses. Many other states have similar laws (check the tracker / state AG pages).
+- Verification: unverified against official text: leginfo blocked; secondary sources only
+- Last verified: 2026-10-18
 
 ## Other comprehensive state privacy laws
 
@@ -96,8 +100,9 @@ read from the text.
 - Bot-protected: yes
 - Key provisions: Privacy notice content, rights, opt-outs, minors' data. Secondary sources report amendments effective 1 July 2026; check the current text
 - Used for: privacy-policy
-- Notes: The legislature's statute page (`Also`) had a TLS certificate chain problem for some clients at verification.
-- Last verified: 2026-10-17
+- Notes: The legislature page (`Also`, cga.ct.gov) sends an incomplete TLS certificate chain, which the verification environment refuses, so the statute was **not read**. The Attorney General page (`URL`) was read. One vendor checklist reports that Public Act 25-113 amends § 42-520 from 1 July 2026 (e.g. a statement on whether personal data is used to train large language models); that is **unverified**, so read the current text.
+- Verification: official AG page read; legislature statute page unreachable
+- Last verified: 2026-10-18
 
 ### US-UT-UCPA — Utah Consumer Privacy Act, Utah Code Title 13 Ch. 61
 - URL: https://le.utah.gov/xcode/Title13/Chapter61/13-61.html
@@ -152,8 +157,10 @@ read from the text.
 - Expect: 507-H
 - Bot-protected: yes
 - Used for: privacy-policy
-- Notes: The old gencourt.state.nh.us address redirects here. Reachable from GitHub's runners at verification, but some networks get their connection closed. Open in a browser if needed.
-- Last verified: 2026-10-17
+- Notes: The old gencourt.state.nh.us address redirects here. The site blocks this environment's IP for direct fetches; the web-fetch tool and GitHub's runners could read it. Check the thresholds in the text before relying on this summary.
+- Verification: web-fetch tool: statute text read; direct fetches get "403 Web Page Blocked" from this environment
+- Key provisions: § 507-H:1 definitions; § 507-H:2 applicability (at least 35,000 consumers per year, or 10,000 with over 25% of gross revenue from selling personal data, per the web-fetch summary); § 507-H:4 consumer rights (access, correct, delete, port, opt out of targeted advertising, sale, profiling) and appeal; § 507-H:6 controller duties incl. privacy notice and honouring opt-out preference signals; § 507-H:8 data protection assessments; attorney general enforces, no private right of action
+- Last verified: 2026-10-18
 
 ### US-NJ-NJDPA — New Jersey Data Privacy Act, P.L. 2023, c. 266 (N.J.S.A. 56:8-166.4 ff.)
 - URL: https://pub.njleg.gov/bills/2022/PL23/266_.HTM

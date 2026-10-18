@@ -33,12 +33,13 @@ DPAs are listed in `EU-EDPB-MEMBERS`.
 - URL: https://www.cnil.fr/fr/cookies-et-autres-traceurs
 - Tier: T2
 - Expect: cookies
-- Also: https://www.legifrance.gouv.fr/
+- Also: https://entreprendre.service-public.gouv.fr/vosdroits/F31228 https://www.legifrance.gouv.fr/
 - Bot-protected: yes
-- Key provisions: CNIL guidelines and recommendation on cookies and trackers ("Refuser tout" as easy as "Accepter tout"; consent validity); Loi Informatique et Libertés art. 82 (implements ePrivacy Art. 5(3)); LCEN (loi n° 2004-575) **mentions légales** (French imprint duty): look up the current article on Légifrance; Code de la consommation (pre-contractual information, droit de rétractation)
+- Key provisions: CNIL guidelines and recommendation on cookies and trackers ("Refuser tout" as easy as "Accepter tout"; consent validity); Loi Informatique et Libertés art. 82 (implements ePrivacy Art. 5(3)); LCEN (loi n° 2004-575) art. 6-III **mentions légales** (French imprint duty: per a law-firm summary, name/denomination, seat, director of publication, phone and e-mail, host details; not yet checked against Légifrance); Code de la consommation (pre-contractual information, droit de rétractation)
 - Used for: imprint ("Mentions légales"), cookie-policy, privacy-policy, terms (CGU/CGV)
-- Notes: The CNIL is very active on cookies. Légifrance blocks automated clients; ask the user to open the article if needed.
-- Last verified: 2026-10-17
+- Notes: The CNIL is very active on cookies. Légifrance is behind a Cloudflare bot challenge that neither plain fetch nor a headless browser passes, so the LCEN article was **not read from the official text**; the content of art. 6-III below comes from a law-firm summary. Official guidance on cookies and consent (DILA): https://entreprendre.service-public.gouv.fr/vosdroits/F31228. Ask the user to open Légifrance, or follow the fallback procedure.
+- Verification: browser/web-fetch: DPA and Service-Public pages read; Légifrance blocked (Cloudflare challenge), LCEN text not read
+- Last verified: 2026-10-18
 
 
 ### MS-IT — Italy
@@ -49,8 +50,9 @@ DPAs are listed in `EU-EDPB-MEMBERS`.
 - Bot-protected: yes
 - Key provisions: Garante guidelines on cookies and other tracking tools (10 June 2021); Codice privacy (D.lgs. 196/2003) art. 122 (cookies); Codice del consumo (consumer rights)
 - Used for: cookie-policy, privacy-policy, terms
-- Notes: normattiva.it refused automated connections at verification.
-- Last verified: 2026-10-17
+- Notes: normattiva.it refuses plain HTTP clients but loads in a headless browser. Search for D.lgs. 196/2003 there to read art. 122.
+- Verification: automated + browser: DPA guideline page and normattiva.it home page read
+- Last verified: 2026-10-18
 
 ### MS-NL — Netherlands
 - URL: https://wetten.overheid.nl/BWBR0009950
@@ -87,8 +89,9 @@ least one of the two refused automated access at verification.
 - Tier: T2
 - Also: https://dv.parliament.bg/
 - Bot-protected: yes
-- Notes: The DPA site had a TLS certificate chain problem for some clients at verification.
-- Last verified: 2026-10-17
+- Notes: The DPA server sends an incomplete TLS certificate chain, which the verification environment (correctly) refuses; the site is therefore **unverified**. Its domain appears in an official CPDP document and in search results. State gazette (reachable): https://dv.parliament.bg/. Use `EU-EDPB-MEMBERS` for the DPA contact details.
+- Verification: unverified: not reachable from the verification environment
+- Last verified: 2026-10-18
 
 ### MS-HR — Croatia
 - URL: https://azop.hr/
@@ -96,14 +99,18 @@ least one of the two refused automated access at verification.
 - Expect: AZOP
 - Also: https://www.narodne-novine.nn.hr/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: automated: DPA home page read; Narodne novine not reachable
+- Notes: narodne-novine.nn.hr was unreachable from the verification environment (tunnel error). Use `MS-NLEX` for Croatian legislation if it stays unreachable.
+- Last verified: 2026-10-18
 
 ### MS-CY — Cyprus
 - URL: https://www.gov.cy/dataprotection/
 - Tier: T2
 - Bot-protected: yes
 - Notes: Use `MS-NLEX` for legislation.
-- Last verified: 2026-10-17
+- Verification: automated: home page read
+- Expect: Προστασίας Δεδομένων
+- Last verified: 2026-10-18
 
 ### MS-CZ — Czechia
 - URL: https://uoou.gov.cz/
@@ -118,21 +125,27 @@ least one of the two refused automated access at verification.
 - Expect: Datatilsynet
 - Also: https://www.retsinformation.dk/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: automated + browser: both sites read
+- Notes: retsinformation.dk answers plain HTTP clients with a challenge but loads in a headless browser.
+- Last verified: 2026-10-18
 
 ### MS-EE — Estonia
 - URL: https://www.aki.ee/
 - Tier: T2
 - Also: https://www.riigiteataja.ee/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: browser: both sites read in a headless browser
+- Notes: Both sites refuse plain HTTP clients (403) but load in a headless browser.
+- Last verified: 2026-10-18
 
 ### MS-FI — Finland
 - URL: https://tietosuoja.fi/
 - Tier: T2
 - Also: https://www.finlex.fi/en
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: partial: tietosuoja.fi blocked (Cloudflare challenge); Finlex read; cookie supervision from a search result only
+- Notes: tietosuoja.fi is behind a Cloudflare bot challenge that no tool here passed, so the DPA site was **not read**. In Finland the electronic-communications regulator Traficom supervises cookie rules, with the DPA competent for personal data questions (per a Traficom cookie guide for service providers co-produced with the DPA, seen in search results only; check traficom.fi).
+- Last verified: 2026-10-18
 
 ### MS-FR-DPA — France (DPA)
 - URL: https://www.cnil.fr/fr
@@ -151,9 +164,11 @@ least one of the two refused automated access at verification.
 - URL: https://naih.hu/
 - Tier: T2
 - Expect: Nemzeti Adatvédelmi és Információszabadság Hatóság
-- Also: https://njt.hu/
+- Also: https://magyarkozlony.hu/ https://njt.hu/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: automated + partial: DPA read; njt.hu unreachable
+- Notes: njt.hu (national legislation database) refuses connections from the verification environment. The official gazette magyarkozlony.hu is reachable.
+- Last verified: 2026-10-18
 
 ### MS-IE-DPA — Ireland (DPA)
 - URL: https://www.dataprotection.ie/en
@@ -178,9 +193,11 @@ least one of the two refused automated access at verification.
 ### MS-LT — Lithuania
 - URL: https://vdai.lrv.lt/
 - Tier: T2
-- Also: https://www.e-tar.lt/
+- Also: https://e-seimas.lrs.lt/ https://www.e-tar.lt/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: partial: vdai.lrv.lt blocked (Cloudflare challenge); register of legal acts read
+- Notes: vdai.lrv.lt is behind a Cloudflare bot challenge that no tool here passed, so the DPA site was **not read**; its domain appears in search results. The Seimas register of legal acts (e-seimas.lrs.lt) is reachable; e-tar.lt refused automated access.
+- Last verified: 2026-10-18
 
 ### MS-LU — Luxembourg
 - URL: https://cnpd.public.lu/fr.html
@@ -206,9 +223,11 @@ least one of the two refused automated access at verification.
 - URL: https://uodo.gov.pl/
 - Tier: T2
 - Expect: UODO
-- Also: https://isap.sejm.gov.pl/
+- Also: https://www.dziennikustaw.gov.pl/ https://isap.sejm.gov.pl/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: automated + partial: DPA read; isap.sejm.gov.pl refuses automated access
+- Notes: isap.sejm.gov.pl returns 403 to every automated client tried. The official gazette dziennikustaw.gov.pl is reachable.
+- Last verified: 2026-10-18
 
 ### MS-PT — Portugal
 - URL: https://www.cnpd.pt/
@@ -220,16 +239,21 @@ least one of the two refused automated access at verification.
 ### MS-RO — Romania
 - URL: https://www.dataprotection.ro/
 - Tier: T2
-- Also: https://legislatie.just.ro/
+- Also: https://monitoruloficial.ro/ https://legislatie.just.ro/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: automated + partial: DPA read; legislatie.just.ro unreachable
+- Notes: legislatie.just.ro closes connections from the verification environment. The official gazette monitoruloficial.ro is reachable.
+- Expect: dataprotection
+- Last verified: 2026-10-18
 
 ### MS-SK — Slovakia
 - URL: https://dataprotection.gov.sk/
 - Tier: T2
 - Also: https://www.slov-lex.sk/
 - Bot-protected: yes
-- Last verified: 2026-10-17
+- Verification: browser: DPA read in a headless browser; Slov-Lex read automatically
+- Notes: dataprotection.gov.sk answers plain HTTP clients with 503 but loads in a headless browser.
+- Last verified: 2026-10-18
 
 ### MS-SI — Slovenia
 - URL: https://www.ip-rs.si/
