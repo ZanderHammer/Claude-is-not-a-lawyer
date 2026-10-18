@@ -3,10 +3,6 @@ name: Check legal sources
 on:
   schedule:
     - cron: "17 6 1 * *" # monthly, 1st of the month
-  pull_request:
-    paths:
-      - "skills/legal-docs/references/sources/**"
-      - "skills/legal-docs/scripts/**"
   workflow_dispatch:
 
 permissions:
