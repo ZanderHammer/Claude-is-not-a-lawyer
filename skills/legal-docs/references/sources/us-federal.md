@@ -48,7 +48,9 @@ URL patterns:
 - Expect: COPPA
 - Key provisions: "Directed to children" factors, mixed-audience services, notice content
 - Used for: privacy-policy
-- Last verified: 2026-10-17
+- Verification: web-fetch tool: page title confirmed; ftc.gov answers scripts and headless browsers with a fake 404 / "abusive automated request" page
+- Notes: Open with a web-fetch tool or a normal browser. The statute and rule entries above cover the legal text.
+- Last verified: 2026-10-18
 
 ### US-CAN-SPAM — CAN-SPAM Act, 15 U.S.C. §§ 7701–7713, and 16 C.F.R. Part 316
 - URL: https://www.govinfo.gov/link/uscode/15/7704?type=usc&year=mostrecent&link-type=html
@@ -66,7 +68,9 @@ URL patterns:
 - Bot-protected: yes
 - Expect: CAN-SPAM
 - Used for: privacy-policy (newsletter section)
-- Last verified: 2026-10-17
+- Verification: web-fetch tool: page title confirmed; ftc.gov answers scripts and headless browsers with a fake 404 / "abusive automated request" page
+- Notes: Open with a web-fetch tool or a normal browser. The statute and rule entries above cover the legal text.
+- Last verified: 2026-10-18
 
 ### US-ROSCA — Restore Online Shoppers' Confidence Act, 15 U.S.C. §§ 8401–8405
 - URL: https://www.govinfo.gov/link/uscode/15/8403?type=usc&year=mostrecent&link-type=html

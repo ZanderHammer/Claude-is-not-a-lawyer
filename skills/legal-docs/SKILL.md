@@ -83,7 +83,7 @@ When records already exist (or the user says "update the legal docs"):
 
 - `references/workflow/`: how to run each phase, plus `source-policy.md`.
 - `references/sources/`: the curated source library, one file per jurisdiction:
-  `eu.md`, `de.md`, `at.md`, `ch.md`, `eu-member-states.md`, `uk.md`, `us-federal.md`, `us-states.md`.
+  `eu.md`, `de.md`, `at.md`, `ch.md`, `es.md`, `eu-member-states.md`, `uk.md`, `us-federal.md`, `us-states.md`.
   Each entry has an ID (e.g. `EU-GDPR`), the official URL, its tier, the key provisions and which
   documents it is used for. Cite sources by ID plus pinpoint, e.g. `EU-GDPR Art. 13(1)(c)`.
 - `references/doc-types/`: required-content checklists per document type, each item tied to source

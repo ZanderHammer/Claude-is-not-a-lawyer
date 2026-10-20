@@ -49,9 +49,17 @@ of the law wins and you point out the conflict in the defense report.
   (e.g. `bgb/__312k.html`). Annexes look like `bgbeg/art_253anlage_1.html`.
 - **legislation.gov.uk** pinpoints: `/article/13`, `/section/5`, `/regulation/6`, `/schedule/3`.
 - **uscode.house.gov** pinpoints: `view.xhtml?req=granuleid:USC-prelim-title<T>-section<S>&num=0&edition=prelim`.
-- Sites marked `Bot-protected: yes` (e.g. eCFR, California leginfo) often block automated
-  fetches. Try the listed alternative URL, and if that fails, tell the user and ask them to open
-  the link and paste the relevant text, or follow the fallback procedure.
+- Sites marked `Bot-protected: yes` often block automated fetches. Try in this order:
+  1. your web-fetch tool (some sites that block scripts answer it, e.g. ftc.gov, gc.nh.gov);
+  2. a headless browser if you have one (some sites that refuse plain HTTP clients load in it,
+     e.g. dsb.gv.at, normattiva.it);
+  3. the official alternative listed in the entry's `Also` field (gazette, regulator, AG page);
+  4. ask the user to open the link and paste the relevant text; then the fallback procedure below.
+  Do **not** try to defeat a bot challenge (Cloudflare "verify you are human") or turn off TLS
+  verification when a server sends a broken certificate chain. Treat those sites as unreachable.
+- The entry's `Verification` field says how it was last read (automated, browser, web-fetch,
+  or "unverified"). Where it says the official text was not read, treat the entry's key
+  provisions as a pointer from a secondary source and say so in the defense report.
 - PDFs are fine. If your fetch tool cannot read PDFs, say so and use the HTML alternative.
 
 ## Fallback procedure (bundled source fails)

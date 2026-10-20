@@ -19,6 +19,7 @@ Files: `skills/legal-docs/references/sources/<jurisdiction>.md`. One entry per s
 - Cite as: https://…                (optional: human-facing URL to cite)
 - Key provisions: § 5(1) Nr. 1 (…); …
 - Used for: imprint, terms
+- Verification: how it was last read: automated | browser | web-fetch | unverified (+ what was not read)
 - Notes: …
 - Last verified: YYYY-MM-DD
 ```
@@ -35,7 +36,7 @@ Rules:
    case-insensitively.
 4. **Key provisions** must be checked against the live text. Do not write them from memory. If
    you are unsure of a pinpoint, cite the section without the sub-number.
-5. Update **`Last verified`** whenever you check an entry by hand.
+5. Update **`Last verified`** and **`Verification`** whenever you check an entry by hand. Say plainly when the official text could not be read (blocked, broken TLS chain) and which secondary source a provision comes from. Never bypass bot challenges or TLS errors to read a page.
 6. For EU law, use the Publications Office URL (`python3 skills/legal-docs/scripts/eurlex.py
    <celex> --latest --url`). For Swiss law, use `fedlex_latest.py`.
 
